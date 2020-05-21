@@ -20,6 +20,8 @@ SETUP_DIR=$(dirname "$0")
 Init() {
 	sudo apt -y install curl
 	sudo apt -y install software-properties-common
+	sudo apt -y install mlocate
+	sudo updatedb
 }
 
 GetTmux() {
