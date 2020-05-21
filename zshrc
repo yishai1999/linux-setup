@@ -10,6 +10,7 @@ export ZSH="/home/yishai/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="af-magic"
 #ZSH_THEME="agnoster"
+#ZSH_THEME="cypher"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -111,6 +112,11 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+function cdfunc() {cd $1; ll}
+function intoless() {$@ | less}
+
+alias cd=cdfunc
 alias glau="gst-launch-1.0"
-alias gins="gst-inspect-1.0"
+alias gins="intoless gst-inspect-1.0"
 alias sourceme="source ~/.zshrc"

@@ -4,12 +4,15 @@
 NAME="Yishai Jaffe"
 EMAIL=yishai1999@gmail.com
 
-GITHUB_USERNAME=user
-GITHUB_EMAIL=email
-GITHUB_PASSWORD=pass
-GITLAB_USERNAME=user
-GITLAB_EMAIL=email
-GITLAB_PASSWORD=pass
+GITHUB_USERNAME=yishai1999
+GITHUB_PASSWORD=Yishai131999
+GITLAB_USERNAME=yishai1999
+GITLAB_PASSWORD=Yishai13
+
+GIT_CONFIG=${HOME}/.gitconfig
+GIT_CREDENTIALS=${HOME}/.git-credentials
+
+# ------------------------------------------------------------>
 
 SETUP_DIR=$(dirname "$0")
 
@@ -26,7 +29,15 @@ GetTmux() {
 # Get git
 GetGit() {
         sudo apt -y install git
-	echo -e "[user]\n\temail = ${EMAIL}\n\tname = ${NAME}" > ${HOME}/.gitconfig
+
+	echo -e "[user]" > ${GIT_CONFIG}
+	echo -e "\n\temail = ${EMAIL}" >> ${GIT_CONFIG}
+	echo -e "\n\tname = ${NAME}" >> ${GIT_CONFIG}
+	echo -e "\n[credential]" >> ${GIT_CONFIG}
+	echo -e "\n\thelper = store" >> ${GIT_CONFIG}
+
+	echo -e "https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com" > ${GIT_CREDENTIALS}
+	echo -e "\nhttps://${GITLAB_USERNAME}:${GITLAB_PASSWORD}@gitlab.com" >> ${GIT_CREDENTIALS}
 }
 
 # Get zsh + oh-my-zsh
