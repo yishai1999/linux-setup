@@ -116,6 +116,7 @@ source $ZSH/oh-my-zsh.sh
 function cdfunc() {cd $1; ll}
 function intoless() {$@ | less}
 
+alias less=cless
 alias cd=cdfunc
 alias glau="gst-launch-1.0"
 alias gins="intoless gst-inspect-1.0"

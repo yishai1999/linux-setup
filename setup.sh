@@ -24,6 +24,12 @@ Init() {
 	sudo updatedb
 }
 
+GetPython() {
+	sudo apt -y install python3
+	sudo apt -y install python3-pip
+	python3 -m pip install pygments
+}
+
 GetTmux() {
 	sudo apt -y install tmux
 }
@@ -71,6 +77,7 @@ GetGdb() {
 }
 
 Init
+GetPython
 GetTmux
 GetGit
 GetZsh
