@@ -1,5 +1,16 @@
 #!/bin/bash
 
+# User variables
+NAME="Yishai Jaffe"
+EMAIL=yishai1999@gmail.com
+
+GITHUB_USERNAME=user
+GITHUB_EMAIL=email
+GITHUB_PASSWORD=pass
+GITLAB_USERNAME=user
+GITLAB_EMAIL=email
+GITLAB_PASSWORD=pass
+
 SETUP_DIR=$(dirname "$0")
 
 # Init
@@ -15,13 +26,14 @@ GetTmux() {
 # Get git
 GetGit() {
         sudo apt -y install git
+	echo -e "[user]\n\temail = ${EMAIL}\n\tname = ${NAME}" > ${HOME}/.gitconfig
 }
 
 # Get zsh + oh-my-zsh
 GetZsh() {
 	sudo apt -y install zsh
 	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-	cp $SETUP_DIR/.zshrc ~/.zshrc
+	cp ${SETUP_DIR}/zshrc ${HOME}/.zshrc
 }
 
 # Get gstreamer
