@@ -43,8 +43,9 @@ GetGit() {
 # Get zsh + oh-my-zsh
 GetZsh() {
 	sudo apt -y install zsh
-	sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+	git clone https://github.com/ohmyzsh/ohmyzsh.git ${HOME}/.oh-my-zsh
 	cp ${SETUP_DIR}/zshrc ${HOME}/.zshrc
+	sudo chsh -s /usr/bin/zsh
 }
 
 # Get gstreamer
