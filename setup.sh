@@ -19,7 +19,6 @@ SETUP_DIR=$(dirname "$0")
 # Init
 Init() {
 	sudo apt -y install curl
-	sudo apt -y install software-properties-common
 	sudo apt -y install mlocate
 	sudo updatedb
 }
@@ -36,23 +35,29 @@ GetTmux() {
 
 # Get git
 GetGit() {
-        sudo apt -y install git
+    sudo apt -y install git
 
-	echo -e "[user]" > ${GIT_CONFIG}
-	echo -e "\n\temail = ${EMAIL}" >> ${GIT_CONFIG}
-	echo -e "\n\tname = ${NAME}" >> ${GIT_CONFIG}
-	echo -e "\n[credential]" >> ${GIT_CONFIG}
-	echo -e "\n\thelper = store" >> ${GIT_CONFIG}
+	cp .gitconfig ${GIT_CONFIG}
+	sed -i "s|@EMAIL@|${EMAIL}|g" ${GIT_CONFIG}
+	sed -i "s|@NAME@|${NAME}|g" ${GIT_CONFIG}
 
 	echo -e "https://${GITHUB_USERNAME}:${GITHUB_PASSWORD}@github.com" > ${GIT_CREDENTIALS}
 	echo -e "\nhttps://${GITLAB_USERNAME}:${GITLAB_PASSWORD}@gitlab.com" >> ${GIT_CREDENTIALS}
 }
 
 # Get zsh + oh-my-zsh
+GetAliasses() {
+	cat history-search.sh >> ${HOME}/.bashrc
+	cat bashrc >> ${HOME}/.bashrc
+	cat bashrc >> ${HOME}/.zshrc
+	cat zshrc >> ${HOME}/.zshrc
+}
+
+# Get zsh + oh-my-zsh
 GetZsh() {
 	sudo apt -y install zsh
-	git clone https://github.com/ohmyzsh/ohmyzsh.git ${HOME}/.oh-my-zsh
-	cp ${SETUP_DIR}/zshrc ${HOME}/.zshrc
+	git clone https://github.com/yishai1999/ohmyzsh.git ${HOME}/.oh-my-zsh --recursive --branch plugins
+	cp ${HOME}/.oh-my-zsh/templates/zshrc.zsh-template ${HOME}/.zshrc
 	sudo chsh -s /usr/bin/zsh
 }
 
@@ -69,6 +74,7 @@ GetCMake() {
 # Get vim
 GetVim() {
 	sudo apt -y install vim
+	cp vimrc ${HOME}/.vimrc
 }
 
 # Get gdb
